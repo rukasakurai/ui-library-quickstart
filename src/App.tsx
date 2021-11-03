@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FluentThemeProvider, LocalizationProvider, COMPONENT_LOCALE_JA_JP, darkTheme, lightTheme, DEFAULT_COMPONENT_ICONS } from '@azure/communication-react';
+import { Stack, registerIcons } from '@fluentui/react';
+import React, { useEffect } from 'react';
+import { CallingComponents } from './CallingComponents';
+import { ChatComponents } from './ChatComponents';
 
-function App() {
+function CompletedComponentsApp(): JSX.Element {
+  const stackStyle = {
+    root: {
+      width: '100%'
+    }
+  };
+
+  useEffect(() => {
+    registerIcons({ icons: DEFAULT_COMPONENT_ICONS });
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <LocalizationProvider locale={COMPONENT_LOCALE_JA_JP}>
+      <FluentThemeProvider fluentTheme={lightTheme}>
+        <Stack horizontal horizontalAlign="space-evenly" styles={stackStyle}>
+          <CallingComponents />
+          <ChatComponents />
+        </Stack>
+      </FluentThemeProvider>
+    </LocalizationProvider>
   );
 }
 
-export default App;
+export default CompletedComponentsApp;
