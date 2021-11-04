@@ -3,6 +3,7 @@ import { Stack, registerIcons } from '@fluentui/react';
 import React, { useEffect } from 'react';
 import { CallingComponents } from './CallingComponents';
 import { ChatComponents } from './ChatComponents';
+import { initializeIcons } from '@fluentui/react/lib/Icons';
 
 function CompletedComponentsApp(): JSX.Element {
   const stackStyle = {
@@ -11,9 +12,7 @@ function CompletedComponentsApp(): JSX.Element {
     }
   };
 
-  useEffect(() => {
-    registerIcons({ icons: DEFAULT_COMPONENT_ICONS });
-  }, [])
+  registerIcons({ icons: DEFAULT_COMPONENT_ICONS });
 
   return (
     <LocalizationProvider locale={COMPONENT_LOCALE_JA_JP}>
